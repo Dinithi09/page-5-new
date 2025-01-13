@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Sri Lanka Map Example'),
+          title: Text('FRESH TRACK'),
           backgroundColor: Colors.green,
         ),
         body: SingleChildScrollView(
@@ -105,22 +105,35 @@ class _MyAppState extends State<MyApp> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
+                        backgroundColor: activePage == "demand" ? Colors.blue : Colors.grey,
                         foregroundColor: Colors.white,
                       ),
                       onPressed: () {
-                        print("Explore Centers button pressed!");
+                        setState(() {
+                          activePage = "demand"; // Update activePage to "demand"
+                        });
                       },
-                      child: Text('Explore Centers'),
+                      child: Text('Demand - Supply Mapping'),
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: activePage == "stakeholders" ? Colors.blue : Colors.grey,
+                        foregroundColor: Colors.white,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          activePage = "stakeholders"; // Update activePage to "stakeholders"
+                        });
+                      },
+                      child: Text('Location of Key Stakeholders'),
                     ),
                   ],
                 ),
               ),
-
               // Map Section
               Container(
                 width: double.infinity,
@@ -208,8 +221,10 @@ class _MyAppState extends State<MyApp> {
                     : activePage == "map"
                     ? 2
                     : 3,
-                selectedItemColor: Colors.green,
+                selectedItemColor: Colors.green, // Active page color
+                unselectedItemColor: Colors.black, // Unselected pages color
               ),
+
             ],
           ),
         ),
